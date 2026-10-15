@@ -1,0 +1,46 @@
+# Python 缓存
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# 虚拟环境
+.venv/
+venv/
+
+# 数据集
+data/
+datasets/
+
+# 模型权重
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# 训练日志
+runs/
+wandb/
+*.log
+
+# 私密配置
+.env
+.env.*
+!.env.example
+
+# 编辑器配置
+.vscode/
+.idea/
+
+# 压缩包
+*.tar.gz
+*.zip
+*.rar
+*.7z
+
+# Windows 下载标记
+*:Zone.Identifier
+
+# 训练输出图（可选）
+prediction_result.png
+training_curves.png
+*_curves.png
