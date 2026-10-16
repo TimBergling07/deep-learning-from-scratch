@@ -3,9 +3,12 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import torch
 
+script_dir = Path(__file__).resolve().parent
 
-checkpoint_path = Path(
-    "./checkpoints/last_checkpoint.pt"
+checkpoint_path = (
+    script_dir
+    / "checkpoints"
+    / "last_checkpoint.pt"
 )
 
 checkpoint = torch.load(
@@ -77,7 +80,11 @@ axes[1].legend()
 
 figure.tight_layout()
 
-output_path = Path("./training_curves.png")
+output_path = (
+    script_dir
+    / "training_curves.png"
+)
+
 figure.savefig(
     output_path,
     dpi=150,

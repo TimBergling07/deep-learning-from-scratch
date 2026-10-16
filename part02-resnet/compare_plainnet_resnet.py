@@ -8,21 +8,35 @@ import torch
 from pathlib import Path
 
 
-# 曲线必须读取 last_checkpoint，因为它包含完整 200 epochs history。
-RESNET_LAST = Path(
-    "./resnet20/checkpoints/last_checkpoint.pt"
-)
-RESNET_BEST = Path(
-    "./resnet20/checkpoints/best_checkpoint.pt"
+PROJECT_DIR = Path(__file__).resolve().parent
+
+RESNET_LAST = (
+    PROJECT_DIR
+    / "resnet20"
+    / "checkpoints"
+    / "last_checkpoint.pt"
 )
 
-PLAINNET_LAST = Path(
-    "./plainnet20/checkpoints/last_checkpoint.pt"
-)
-PLAINNET_BEST = Path(
-    "./plainnet20/checkpoints/best_checkpoint.pt"
+RESNET_BEST = (
+    PROJECT_DIR
+    / "resnet20"
+    / "checkpoints"
+    / "best_checkpoint.pt"
 )
 
+PLAINNET_LAST = (
+    PROJECT_DIR
+    / "plainnet20"
+    / "checkpoints"
+    / "last_checkpoint.pt"
+)
+
+PLAINNET_BEST = (
+    PROJECT_DIR
+    / "plainnet20"
+    / "checkpoints"
+    / "best_checkpoint.pt"
+)
 
 def load_checkpoint(path):
     if not path.exists():
@@ -177,10 +191,11 @@ def main():
 
     figure.tight_layout()
 
-    output_path = Path(
-        "./plainnet_vs_resnet.png"
+    output_path = (
+        PROJECT_DIR
+        / "plainnet_vs_resnet.png"
     )
-
+    
     figure.savefig(
         output_path,
         dpi=180,

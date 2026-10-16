@@ -180,10 +180,13 @@ def main():
     )
 
     print("device:", device)
-
-    checkpoint_dir = Path(
-        "./checkpoints"
-    )
+    
+    script_dir = Path(__file__).resolve().parent
+    project_dir = script_dir.parent
+    
+    checkpoint_dir = script_dir / "checkpoints"
+    data_dir = project_dir / "data"
+    
     checkpoint_dir.mkdir(
         parents=True,
         exist_ok=True,
@@ -212,14 +215,14 @@ def main():
     ])
 
     train_base_dataset = datasets.CIFAR10(
-        root="./data",
+        root = data_dir,
         train=True,
         download=True,
         transform=train_transform,
     )
 
     validation_base_dataset = datasets.CIFAR10(
-        root="./data",
+        root = data_dir,
         train=True,
         download=True,
         transform=eval_transform,
@@ -254,7 +257,7 @@ def main():
     )
 
     test_dataset = datasets.CIFAR10(
-        root="./data",
+        root = data_dir,
         train=False,
         download=True,
         transform=eval_transform,
