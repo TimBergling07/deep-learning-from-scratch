@@ -5,7 +5,7 @@ from torch import nn
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 
-from network import SmallCNN
+from smallcnn import SmallCNN
 
 def evaluate(model, data_loader, criterion, device):
     model.eval()
@@ -86,8 +86,8 @@ def main():
     print("load result:", load_result)
     print("saved epoch:", checkpoint["epoch"])
     print(
-        "saved accuracy:",
-        f'{checkpoint["test_accuracy"] * 100:.2f}%',
+        "saved validation accuracy:",
+        f'{checkpoint["validation_accuracy"] * 100:.2f}%',
     )
 
     criterion = nn.CrossEntropyLoss()

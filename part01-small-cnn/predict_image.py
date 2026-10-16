@@ -6,7 +6,7 @@ import torch
 from PIL import Image
 from torchvision import transforms
 
-from network import SmallCNN
+from smallCNN import SmallCNN
 
 
 CLASS_NAMES = (
@@ -53,7 +53,7 @@ def main():
 
     checkpoint_path = (
         project_dir
-        / "checkpoints_validation"
+        / "checkpoints"
         / "best_checkpoint.pt"
     )
 
