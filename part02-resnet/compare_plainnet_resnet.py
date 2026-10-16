@@ -86,13 +86,13 @@ def main():
     axes[0].plot(
         resnet_epochs,
         resnet_history["train_loss"],
-        label="ResNet Train",
+        label="ResNet-20 (zero-init) Train",
         color="tab:blue",
     )
     axes[0].plot(
         resnet_epochs,
         resnet_history["validation_loss"],
-        label="ResNet Validation",
+        label="ResNet-20 (zero-init) Validation",
         color="tab:blue",
         linestyle="--",
     )

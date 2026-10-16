@@ -82,6 +82,11 @@ def evaluate(
     return average_loss, average_accuracy
 
 def main():
+    torch.manual_seed(42)
+
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(42)
+    
     script_dir = Path(__file__).resolve().parent
     project_dir = script_dir.parent
     
@@ -178,6 +183,9 @@ def main():
     print("test samples:", len(test_dataset))
     
     #Dataloader
+    
+    train_generator = torch.Generator().manual_seed(42)
+    
     train_loader = DataLoader(
         train_dataset,
         batch_size = 128,
@@ -186,6 +194,7 @@ def main():
         pin_memory = True, # 使用锁页内存，可以提高cpu到gpu的数据传输的效率
         persistent_workers = True, # 表示每个epoch结束后不销毁数据读取进程
         prefetch_factor = 2,
+        generator = train_generator,
     )
 
     validation_loader = DataLoader(
@@ -318,7 +327,10 @@ def main():
         weights_only = True,
     )
     
-    best_model = ResNet20().to(device)
+    best_model = ResNet20(
+        num_classes=10,
+        zero_init_residual=True,
+    ).to(device)
     
     best_model.load_state_dict(
         best_checkpoint["model_state_dict"]

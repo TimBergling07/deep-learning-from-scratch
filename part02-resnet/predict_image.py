@@ -66,7 +66,7 @@ def main():
 
     model = ResNet20(
         num_classes = 10,
-        zero_init_residual = False,
+        zero_init_residual = True,
     ).to(device)
 
     model.load_state_dict(

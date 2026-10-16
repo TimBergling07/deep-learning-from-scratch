@@ -271,6 +271,8 @@ def main():
         validation_indices
     )
 
+    train_generator = torch.Generator().manual_seed(42)
+    
     train_loader = DataLoader(
         train_dataset,
         batch_size=128,
@@ -279,6 +281,7 @@ def main():
         pin_memory=torch.cuda.is_available(),
         persistent_workers=True,
         prefetch_factor=2,
+        generator = train_generator,
     )
 
     validation_loader = DataLoader(
